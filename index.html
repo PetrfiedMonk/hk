@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>H&K Enterprises LLC — Consulting & Logistics Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy-deep:   #060D1A;
+  --navy:        #0B1628;
+  --navy-mid:    #0F1E38;
+  --navy-card:   #122040;
+  --navy-hover:  #172848;
+  --gold:        #C8A84B;
+  --gold-bright: #E4C46A;
+  --gold-pale:   #F0D898;
+  --gold-dim:    rgba(200,168,75,0.12);
+  --gold-glow:   rgba(200,168,75,0.22);
+  --cream:       #F4EDD8;
+  --cream-dim:   rgba(244,237,216,0.55);
+  --white:       #FFFFFF;
+  --muted:       rgba(244,237,216,0.42);
+  --border:      rgba(200,168,75,0.14);
+  --border-hi:   rgba(200,168,75,0.32);
+  --teal:        #4EC9B8;
+}
+
+*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+  font-family:'Jost',sans-serif;
+  background:var(--navy-deep);
+  color:var(--cream);
+  overflow-x:hidden;
+  cursor:none;
+}
+
+/* grain overlay */
+body::before {
+  content:'';
+  position:fixed; inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)' opacity='0.028'/%3E%3C/svg%3E");
+  pointer-events:none; z-index:0; opacity:.7;
+}
+
+/* CURSOR */
+#cr  { position:fixed;width:9px;height:9px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .22s,height .22s; }
+#cr2 { position:fixed;width:38px;height:38px;border:1px solid rgba(200,168,75,0.45);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .13s ease; }
+body:has(a:hover) #cr,
+body:has(button:hover) #cr  { width:18px;height:18px; }
+body:has(a:hover) #cr2,
+body:has(button:hover) #cr2 { width:60px;height:60px;border-color:rgba(200,168,75,0.65); }
+
+/* NAV */
+nav {
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:22px 52px;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:all .4s;
+}
+nav.s {
+  background:rgba(6,13,26,0.92);
+  backdrop-filter:blur(28px) saturate(1.6);
+  border-bottom:1px solid var(--border);
+  padding:15px 52px;
+}
+.logo {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:26px;letter-spacing:3px;
+  color:var(--cream);text-decoration:none;
+  display:flex;align-items:center;gap:2px;
+}
+.logo-amp { color:var(--gold); }
+.nav-r { display:flex;align-items:center;gap:36px; }
+.nav-r a {
+  color:var(--muted);font-size:12px;font-weight:500;
+  text-decoration:none;letter-spacing:1.5px;text-transform:uppercase;
+  transition:color .2s;
+}
+.nav-r a:hover { color:var(--gold); }
+.nav-btn {
+  background:transparent;
+  border:1px solid var(--gold);
+  color:var(--gold);
+  padding:9px 26px;
+  font-family:'Jost',sans-serif;
+  font-size:11px;font-weight:600;
+  letter-spacing:2px;text-transform:uppercase;
+  cursor:none;
+  transition:all .25s;
+  position:relative;overflow:hidden;
+}
+.nav-btn::before {
+  content:'';position:absolute;inset:0;
+  background:var(--gold);
+  transform:translateX(-101%);
+  transition:transform .28s ease;
+}
+.nav-btn span { position:relative;z-index:1; }
+.nav-btn:hover::before { transform:translateX(0); }
+.nav-btn:hover { color:var(--navy-deep); }
+
+/* HERO */
+.hero {
+  min-height:100vh;
+  padding:150px 52px 90px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0;align-items:center;
+  position:relative;overflow:hidden;
+  z-index:1;
+}
+
+/* geometric bg shapes */
+.geo-ring {
+  position:absolute;
+  border-radius:50%;
+  border:1px solid var(--border);
+  pointer-events:none;
+}
+.geo-r1 { width:640px;height:640px;top:50%;right:-120px;transform:translateY(-50%);animation:ringRot 60s linear infinite; }
+.geo-r2 { width:460px;height:460px;top:50%;right:60px;transform:translateY(-50%);animation:ringRot 40s linear infinite reverse;border-color:rgba(200,168,75,0.08); }
+.geo-r3 { width:260px;height:260px;top:50%;right:240px;transform:translateY(-50%);border-style:dashed;border-color:rgba(200,168,75,0.07); }
+@keyframes ringRot { to { transform:translateY(-50%) rotate(360deg); } }
+
+.hero-glow {
+  position:absolute;right:0;top:30%;
+  width:600px;height:600px;
+  background:radial-gradient(ellipse, rgba(200,168,75,0.09) 0%, transparent 65%);
+  pointer-events:none;
+}
+
+/* hero left */
+.hero-l { position:relative;z-index:2; }
+
+.h-badge {
+  display:inline-flex;align-items:center;gap:10px;
+  border:1px solid var(--border-hi);
+  padding:7px 18px 7px 12px;
+  margin-bottom:44px;
+  animation:fu .65s ease .1s both;
+}
+.h-badge-dot { width:7px;height:7px;background:var(--teal);border-radius:50%;animation:pulse 2.4s ease infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.35;transform:scale(.8)} }
+.h-badge span { font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);font-weight:500; }
+
+h1 {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(68px,8.5vw,118px);
+  line-height:.88;
+  letter-spacing:3px;
+  margin-bottom:32px;
+  animation:fu .65s ease .22s both;
+  color:var(--cream);
+}
+h1 .italic {
+  font-family:'Playfair Display',serif;
+  font-style:italic;
+  font-weight:400;
+  letter-spacing:-1px;
+  color:var(--gold-bright);
+  font-size:.92em;
+}
+h1 .ghost {
+  -webkit-text-stroke:1px rgba(244,237,216,0.22);
+  color:transparent;
+  display:block;
+}
+
+.hero-sub {
+  font-size:15px;line-height:1.8;color:var(--muted);
+  max-width:460px;margin-bottom:48px;font-weight:300;
+  animation:fu .65s ease .38s both;
+}
+
+.hero-btns {
+  display:flex;gap:18px;align-items:center;
+  animation:fu .65s ease .52s both;
+}
+
+.btn-primary {
+  background:var(--gold);color:var(--navy-deep);
+  padding:14px 38px;
+  font-family:'Jost',sans-serif;
+  font-size:11px;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;
+  text-decoration:none;display:inline-block;
+  position:relative;overflow:hidden;
+  transition:all .28s;
+  clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px));
+}
+.btn-primary::after {
+  content:'';position:absolute;inset:0;
+  background:var(--gold-bright);
+  transform:translateX(-101%);
+  transition:transform .28s ease;
+}
+.btn-primary span { position:relative;z-index:1; }
+.btn-primary:hover::after { transform:translateX(0); }
+.btn-primary:hover { transform:translateY(-2px); }
+
+.btn-line {
+  color:var(--cream-dim);font-size:13px;font-weight:400;
+  text-decoration:none;
+  display:flex;align-items:center;gap:12px;
+  letter-spacing:.5px;
+  transition:color .25s;
+}
+.btn-line-arrow {
+  width:40px;height:40px;
+  border:1px solid rgba(244,237,216,0.15);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;
+  transition:all .28s;
+}
+.btn-line:hover { color:var(--gold); }
+.btn-line:hover .btn-line-arrow { border-color:var(--gold);color:var(--gold);transform:rotate(45deg); }
+
+/* hero right floating cards */
+.hero-r {
+  position:relative;z-index:2;
+  height:540px;
+  animation:fu .65s ease .45s both;
+}
+.fc {
+  position:absolute;
+  background:var(--navy-card);
+  border:1px solid var(--border);
+  padding:28px 28px 24px;
+}
+/* gold top-left corner accent */
+.fc::before {
+  content:'';position:absolute;
+  top:-1px;left:-1px;
+  width:32px;height:2px;
+  background:var(--gold);
+}
+.fc::after {
+  content:'';position:absolute;
+  top:-1px;left:-1px;
+  width:2px;height:32px;
+  background:var(--gold);
+}
+.fc-a { top:0;right:36px;width:280px;animation:fl1 6s ease-in-out infinite; }
+.fc-b { top:160px;right:0;width:220px;animation:fl2 7s ease-in-out infinite 1.2s; }
+.fc-c { bottom:36px;right:90px;width:300px;animation:fl3 8s ease-in-out infinite .6s; }
+@keyframes fl1 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+@keyframes fl2 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-9px)} }
+@keyframes fl3 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
+
+.fc-lbl { font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;font-weight:600; }
+.fc-big {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:48px;letter-spacing:2px;
+  color:var(--gold);line-height:1;margin-bottom:4px;
+}
+.fc-sub { font-size:11px;color:var(--muted);font-weight:300; }
+.fc-title {
+  font-family:'Playfair Display',serif;
+  font-size:15px;font-weight:700;
+  color:var(--cream);margin-bottom:8px;
+}
+.fc-p { font-size:12px;color:var(--muted);line-height:1.65;font-weight:300; }
+
+.fc-sectors { display:flex;flex-wrap:wrap;gap:7px;margin-top:16px; }
+.fc-sector {
+  font-size:9px;letter-spacing:2px;text-transform:uppercase;font-weight:600;
+  color:var(--gold);
+  border:1px solid rgba(200,168,75,0.28);
+  padding:5px 12px;
+}
+
+.fc-bar-row { display:flex;align-items:center;gap:10px;margin-bottom:10px; }
+.fc-bar-row:last-child { margin-bottom:0; }
+.fc-bar-lbl { font-size:10px;color:var(--muted);width:96px;flex-shrink:0; }
+.fc-bar-track { flex:1;height:2px;background:rgba(200,168,75,0.12);position:relative;overflow:hidden; }
+.fc-bar-fill { height:100%;background:var(--gold);animation:grow 1.8s ease .9s both; }
+.fc-bar-fill.t { background:var(--teal); }
+@keyframes grow { from{width:0} }
+.fc-bar-val { font-size:10px;color:var(--muted);width:26px;text-align:right; }
+
+.fc-dots { display:flex;gap:7px;margin-top:16px; }
+.fc-dot { width:6px;height:6px;border-radius:50%;background:var(--border); }
+.fc-dot.on { background:var(--teal); }
+
+@keyframes fu { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+
+/* TICKER */
+.ticker {
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  overflow:hidden;padding:14px 0;
+  background:var(--navy-mid);
+  position:relative;z-index:1;
+}
+.ticker-inner { display:flex;animation:tick 24s linear infinite;white-space:nowrap; }
+.ti {
+  display:inline-flex;align-items:center;gap:14px;
+  padding:0 30px;
+  font-family:'Jost',sans-serif;
+  font-size:11px;font-weight:600;
+  letter-spacing:2.5px;text-transform:uppercase;
+  color:rgba(244,237,216,0.22);
+}
+.ti.hi { color:var(--gold); }
+.ti-sep { width:4px;height:4px;background:var(--gold);border-radius:50%;opacity:.35;flex-shrink:0; }
+@keyframes tick { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+/* SECTIONS */
+.sec { padding:110px 52px;position:relative;z-index:1; }
+.sec-tag {
+  display:flex;align-items:center;gap:14px;
+  margin-bottom:22px;
+}
+.sec-tag-line { width:36px;height:1px;background:var(--gold); }
+.sec-tag span { font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:600; }
+.sec-h {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(44px,5.5vw,72px);
+  letter-spacing:2px;
+  line-height:.92;
+  color:var(--cream);
+}
+.sec-h em {
+  font-family:'Playfair Display',serif;
+  font-style:italic;font-weight:400;
+  color:var(--muted);
+  letter-spacing:0;
+  font-size:.88em;
+}
+
+/* SERVICES */
+.services { background:var(--navy-mid); }
+.srv-grid {
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;margin-top:68px;
+  border:1px solid var(--border);
+}
+.srv {
+  background:var(--navy-card);
+  padding:42px 34px;
+  position:relative;overflow:hidden;
+  transition:background .35s;
+  cursor:none;
+}
+.srv-corner {
+  position:absolute;top:0;left:0;
+  width:0;height:0;
+  border-top:48px solid transparent;
+  border-left:48px solid var(--gold-dim);
+  transition:border-left-color .35s;
+}
+.srv:hover { background:var(--navy-hover); }
+.srv:hover .srv-corner { border-left-color:var(--gold-glow); }
+.srv-num {
+  font-family:'Playfair Display',serif;
+  font-style:italic;
+  font-size:80px;font-weight:400;
+  color:rgba(200,168,75,0.07);
+  line-height:1;
+  position:absolute;top:16px;right:22px;
+  transition:color .35s;user-select:none;
+}
+.srv:hover .srv-num { color:rgba(200,168,75,0.14); }
+.srv-icon {
+  width:42px;height:42px;
+  background:var(--gold-dim);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--gold);
+  margin-bottom:26px;
+  transition:background .3s;
+}
+.srv:hover .srv-icon { background:var(--gold-glow); }
+.srv-title {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:22px;letter-spacing:1.5px;
+  margin-bottom:13px;color:var(--cream);
+}
+.srv-desc { font-size:13px;line-height:1.8;color:var(--muted);font-weight:300;margin-bottom:22px; }
+.srv-pills { display:flex;flex-wrap:wrap;gap:6px; }
+.srv-pill {
+  font-size:9px;letter-spacing:2px;text-transform:uppercase;font-weight:600;
+  color:var(--gold);
+  border:1px solid rgba(200,168,75,0.22);
+  padding:4px 10px;
+}
+
+/* WHO WE SERVE */
+.serve { background:var(--navy-deep); }
+.serve-grid {
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:18px;margin-top:68px;
+}
+.serve-card {
+  background:var(--navy-card);
+  border:1px solid var(--border);
+  padding:40px 36px;
+  display:flex;gap:26px;
+  transition:border-color .3s,transform .3s;
+  position:relative;overflow:hidden;
+}
+.serve-card::after {
+  content:'';position:absolute;
+  left:0;top:0;bottom:0;width:2px;
+  background:var(--gold);
+  transform:scaleY(0);transform-origin:bottom;
+  transition:transform .4s ease;
+}
+.serve-card:hover { border-color:var(--border-hi);transform:translateY(-5px); }
+.serve-card:hover::after { transform:scaleY(1); }
+.serve-ico {
+  width:46px;height:46px;flex-shrink:0;
+  background:var(--gold-dim);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--gold);font-size:19px;margin-top:3px;
+}
+.serve-name {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:22px;letter-spacing:1.5px;
+  margin-bottom:9px;color:var(--cream);
+}
+.serve-desc { font-size:13px;color:var(--muted);line-height:1.8;font-weight:300; }
+
+/* WHY US */
+.why { background:var(--navy-mid);overflow:hidden; }
+.why-inner {
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:88px;align-items:center;
+}
+.pill-list { margin-top:50px; }
+.pill-row {
+  display:flex;gap:22px;align-items:flex-start;
+  padding:24px 0;
+  border-bottom:1px solid var(--border);
+  transition:all .3s;cursor:none;
+}
+.pill-row:first-child { border-top:1px solid var(--border); }
+.pill-row:hover .pill-lbl { color:var(--gold); }
+.pill-i {
+  font-family:'Playfair Display',serif;
+  font-style:italic;font-size:20px;
+  color:rgba(200,168,75,0.2);
+  flex-shrink:0;width:26px;padding-top:1px;
+}
+.pill-lbl {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:17px;letter-spacing:1px;
+  color:var(--cream);margin-bottom:5px;
+  transition:color .3s;
+}
+.pill-sub { font-size:12px;color:var(--muted);line-height:1.7;font-weight:300; }
+
+/* why visual */
+.why-vis {
+  position:relative;height:500px;
+  display:flex;align-items:center;justify-content:center;
+}
+.why-ring {
+  position:absolute;border-radius:50%;
+  border:1px solid var(--border);
+  animation:rp 4s ease-in-out infinite;
+}
+.why-ring:nth-child(1) { width:200px;height:200px;animation-delay:0s; }
+.why-ring:nth-child(2) { width:320px;height:320px;animation-delay:.7s;border-color:rgba(200,168,75,0.08); }
+.why-ring:nth-child(3) { width:440px;height:440px;animation-delay:1.4s;border-color:rgba(200,168,75,0.05);border-style:dashed; }
+@keyframes rp { 0%,100%{transform:scale(1);opacity:.5} 50%{transform:scale(1.05);opacity:1} }
+.why-center {
+  position:relative;z-index:2;
+  text-align:center;
+  width:170px;height:170px;
+  background:var(--navy-card);
+  border:1px solid var(--border-hi);
+  border-radius:50%;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:2px;
+}
+.why-c-big {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:30px;letter-spacing:4px;
+  color:var(--gold);
+}
+.why-c-sub { font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:600; }
+
+/* CTA */
+.cta { background:var(--navy-deep);overflow:hidden;position:relative; }
+.cta-bg {
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at 20% 60%, rgba(200,168,75,0.09) 0%,transparent 55%),
+    radial-gradient(ellipse at 80% 40%, rgba(78,201,184,0.05) 0%,transparent 50%);
+}
+/* diagonal gold bar */
+.cta-bar {
+  position:absolute;
+  top:0;left:0;right:0;
+  height:2px;
+  background:linear-gradient(90deg, transparent 0%, var(--gold) 40%, var(--gold-bright) 60%, transparent 100%);
+}
+.cta-inner { position:relative;z-index:2;max-width:920px;margin:0 auto;text-align:center; }
+.cta-sec-tag { justify-content:center;margin-bottom:36px; }
+.cta-h {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(56px,9vw,110px);
+  letter-spacing:3px;line-height:.88;
+  color:var(--cream);
+  margin-bottom:28px;
+}
+.cta-h em {
+  font-family:'Playfair Display',serif;
+  font-style:italic;font-weight:400;
+  color:var(--gold-bright);letter-spacing:-1px;
+  font-size:.9em;
+  display:block;
+}
+.cta-sub { font-size:15px;color:var(--muted);font-weight:300;line-height:1.8;max-width:560px;margin:0 auto 48px; }
+.cta-row { display:flex;gap:18px;justify-content:center;flex-wrap:wrap; }
+.cta-contact { display:flex;gap:52px;justify-content:center;margin-top:64px;flex-wrap:wrap; }
+.cti { text-align:center; }
+.cti-l { font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:9px;font-weight:600; }
+.cti-v { font-size:14px;color:var(--cream);font-weight:400; }
+
+/* FOOTER */
+footer {
+  background:var(--navy-mid);
+  border-top:1px solid var(--border);
+  padding:32px 52px;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:16px;
+  position:relative;z-index:1;
+}
+.foot-logo {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:20px;letter-spacing:3px;color:var(--cream);
+}
+.foot-logo span { color:var(--gold); }
+.foot-tag { font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:4px;font-weight:500; }
+.foot-r { font-size:11px;color:var(--muted);letter-spacing:.5px; }
+
+/* REVEAL */
+.rv { opacity:0;transform:translateY(26px);transition:opacity .65s ease,transform .65s ease; }
+.rv.in { opacity:1;transform:translateY(0); }
+
+/* LEADERSHIP */
+.leadership { background:var(--navy-deep);overflow:hidden;position:relative; }
+.lead-bg {
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at 70% 50%, rgba(200,168,75,0.08) 0%,transparent 60%),
+    radial-gradient(ellipse at 30% 70%, rgba(78,201,184,0.04) 0%,transparent 55%);
+}
+.exec-grid {
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:28px;margin-top:68px;
+  max-width:1000px;
+}
+.exec-card {
+  background:var(--navy-card);
+  border:1px solid var(--border);
+  padding:0;
+  position:relative;overflow:hidden;
+  transition:all .35s;
+  cursor:none;
+}
+.exec-card::before {
+  content:'';position:absolute;
+  top:0;left:0;right:0;height:3px;
+  background:var(--gold);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .4s ease;
+}
+.exec-card:hover { border-color:var(--border-hi);transform:translateY(-6px);box-shadow:0 20px 48px rgba(200,168,75,0.12); }
+.exec-card:hover::before { transform:scaleX(1); }
+.exec-head {
+  background:linear-gradient(135deg, rgba(200,168,75,0.06) 0%, rgba(78,201,184,0.04) 100%);
+  padding:42px 36px 36px;
+  position:relative;
+  border-bottom:1px solid var(--border);
+}
+.exec-name {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:28px;letter-spacing:1.5px;
+  color:var(--cream);margin-bottom:8px;
+}
+.exec-title {
+  font-size:12px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--gold);font-weight:600;margin-bottom:16px;
+}
+.exec-subtitle {
+  font-size:11px;color:var(--muted);font-style:italic;
+  letter-spacing:.5px;line-height:1.6;
+}
+.exec-body {
+  padding:32px 36px;
+}
+.exec-bio {
+  font-size:13px;color:var(--muted);line-height:1.85;
+  margin-bottom:22px;font-weight:300;
+}
+.exec-highlights {
+  margin-top:24px;padding-top:24px;
+  border-top:1px solid rgba(200,168,75,0.1);
+}
+.exec-hi-label {
+  font-size:9px;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--gold);font-weight:600;margin-bottom:12px;
+}
+.exec-point {
+  font-size:11px;color:var(--cream-dim);
+  line-height:1.7;margin-bottom:8px;
+  padding-left:14px;
+  position:relative;
+}
+.exec-point::before {
+  content:'→';position:absolute;left:0;
+  color:var(--gold);font-weight:600;
+}
+
+/* RESPONSIVE */
+@media(max-width:920px){
+  .hero{grid-template-columns:1fr;padding:130px 28px 70px}
+  .hero-r{display:none}
+  .srv-grid{grid-template-columns:1fr}
+  .serve-grid{grid-template-columns:1fr}
+  .why-inner{grid-template-columns:1fr;gap:40px}
+  nav,nav.s{padding:14px 28px}
+  .sec{padding:80px 28px}
+  .nav-r a{display:none}
+  .exec-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div id="cr"></div>
+<div id="cr2"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="logo">H<span class="logo-amp">&</span>K&nbsp;Enterprises</a>
+  <div class="nav-r">
+    <a href="#services">Services</a>
+    <a href="#serve">Clients</a>
+    <a href="#why">Why Us</a>
+    <a href="#leadership">Leadership</a>
+    <a href="#contact">Contact</a>
+    <button class="nav-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})"><span>Work With Us</span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <!-- geometry -->
+  <div class="geo-ring geo-r1"></div>
+  <div class="geo-ring geo-r2"></div>
+  <div class="geo-ring geo-r3"></div>
+  <div class="hero-glow"></div>
+
+  <!-- left -->
+  <div class="hero-l">
+    <div class="h-badge">
+      <span class="h-badge-dot"></span>
+      <span>Consulting &amp; Logistics Solutions</span>
+    </div>
+    <h1>
+      WE MAKE<br>
+      <span class="italic">complex</span><br>
+      <span class="ghost">LOOK EASY.</span>
+    </h1>
+    <p class="hero-sub">
+      H&K Enterprises delivers high-impact consulting and logistics solutions to public sector agencies, commercial clients, and international organizations — with precision that speaks for itself.
+    </p>
+    <div class="hero-btns">
+      <a href="#services" class="btn-primary"><span>Explore Services</span></a>
+      <a href="#contact" class="btn-line">
+        <span class="btn-line-arrow">→</span>
+        Let's talk
+      </a>
+    </div>
+  </div>
+
+  <!-- right: floating cards -->
+  <div class="hero-r">
+    <div class="fc fc-a">
+      <div class="fc-lbl">Operational Reach</div>
+      <div style="margin-top:4px">
+        <div class="fc-bar-row">
+          <span class="fc-bar-lbl">Public Sector</span>
+          <div class="fc-bar-track"><div class="fc-bar-fill" style="width:92%"></div></div>
+          <span class="fc-bar-val">92%</span>
+        </div>
+        <div class="fc-bar-row">
+          <span class="fc-bar-lbl">Commercial</span>
+          <div class="fc-bar-track"><div class="fc-bar-fill" style="width:86%"></div></div>
+          <span class="fc-bar-val">86%</span>
+        </div>
+        <div class="fc-bar-row">
+          <span class="fc-bar-lbl">International</span>
+          <div class="fc-bar-track"><div class="fc-bar-fill t" style="width:79%"></div></div>
+          <span class="fc-bar-val">79%</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fc fc-b">
+      <div class="fc-lbl">Markets Served</div>
+      <div class="fc-sectors">
+        <span class="fc-sector">SLED</span>
+        <span class="fc-sector">Federal</span>
+        <span class="fc-sector">SMB</span>
+        <span class="fc-sector">International</span>
+        <span class="fc-sector">Logistics</span>
+      </div>
+    </div>
+
+    <div class="fc fc-c">
+      <div class="fc-lbl">Mission Profile</div>
+      <div class="fc-title">Precision Execution</div>
+      <p class="fc-p">Operational improvement and strategic initiatives that demand execution excellence and deliver measurable outcomes — every time.</p>
+      <div class="fc-dots">
+        <div class="fc-dot on"></div>
+        <div class="fc-dot on"></div>
+        <div class="fc-dot on"></div>
+        <div class="fc-dot"></div>
+        <div class="fc-dot"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ti hi">Strategic Consulting</span><span class="ti-sep"></span>
+    <span class="ti">Supply Chain</span><span class="ti-sep"></span>
+    <span class="ti hi">Logistics Solutions</span><span class="ti-sep"></span>
+    <span class="ti">Process Optimization</span><span class="ti-sep"></span>
+    <span class="ti hi">International Operations</span><span class="ti-sep"></span>
+    <span class="ti">Vendor Management</span><span class="ti-sep"></span>
+    <span class="ti hi">Public Sector</span><span class="ti-sep"></span>
+    <span class="ti">Mission-Critical Ops</span><span class="ti-sep"></span>
+    <span class="ti hi">Strategic Consulting</span><span class="ti-sep"></span>
+    <span class="ti">Supply Chain</span><span class="ti-sep"></span>
+    <span class="ti hi">Logistics Solutions</span><span class="ti-sep"></span>
+    <span class="ti">Process Optimization</span><span class="ti-sep"></span>
+    <span class="ti hi">International Operations</span><span class="ti-sep"></span>
+    <span class="ti">Vendor Management</span><span class="ti-sep"></span>
+    <span class="ti hi">Public Sector</span><span class="ti-sep"></span>
+    <span class="ti">Mission-Critical Ops</span><span class="ti-sep"></span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="sec services" id="services">
+  <div class="sec-tag rv"><div class="sec-tag-line"></div><span>What We Do</span></div>
+  <h2 class="sec-h rv" style="transition-delay:.1s">Six disciplines.<br><em>One team.</em></h2>
+  <div class="srv-grid">
+
+    <div class="srv rv" style="transition-delay:.08s">
+      <div class="srv-corner"></div>
+      <div class="srv-num">01</div>
+      <div class="srv-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+      </div>
+      <div class="srv-title">Strategic Consulting</div>
+      <p class="srv-desc">Expert advisory that aligns your operations with long-term objectives. We don't just advise — we design solutions and lead implementation all the way through.</p>
+      <div class="srv-pills"><span class="srv-pill">Advisory</span><span class="srv-pill">Planning</span><span class="srv-pill">Execution</span></div>
+    </div>
+
+    <div class="srv rv" style="transition-delay:.16s">
+      <div class="srv-corner"></div>
+      <div class="srv-num">02</div>
+      <div class="srv-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <div class="srv-title">Operational Efficiency</div>
+      <p class="srv-desc">Systematic process improvement that eliminates friction, reduces overhead, and maximizes throughput across every operational layer of your organization.</p>
+      <div class="srv-pills"><span class="srv-pill">Process</span><span class="srv-pill">Improvement</span><span class="srv-pill">ROI</span></div>
+    </div>
+
+    <div class="srv rv" style="transition-delay:.24s">
+      <div class="srv-corner"></div>
+      <div class="srv-num">03</div>
+      <div class="srv-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+      </div>
+      <div class="srv-title">Logistics &amp; Supply Chain</div>
+      <p class="srv-desc">End-to-end supply chain coordination from procurement to last-mile delivery. We manage the complexity so your operations flow without friction.</p>
+      <div class="srv-pills"><span class="srv-pill">Supply Chain</span><span class="srv-pill">Distribution</span></div>
+    </div>
+
+    <div class="srv rv" style="transition-delay:.32s">
+      <div class="srv-corner"></div>
+      <div class="srv-num">04</div>
+      <div class="srv-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 2v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+      </div>
+      <div class="srv-title">Procurement &amp; Vendor Mgmt</div>
+      <p class="srv-desc">Strategic sourcing, vendor vetting, and contract management. We build supplier networks that deliver quality, compliance, and value consistently.</p>
+      <div class="srv-pills"><span class="srv-pill">Sourcing</span><span class="srv-pill">Compliance</span><span class="srv-pill">Contracts</span></div>
+    </div>
+
+    <div class="srv rv" style="transition-delay:.4s">
+      <div class="srv-corner"></div>
+      <div class="srv-num">05</div>
+      <div class="srv-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+      </div>
+      <div class="srv-title">Public Sector Support</div>
+      <p class="srv-desc">Specialized SLED services navigating federal regulations and government procurement. We understand the system — and how to work within it effectively.</p>
+      <div class="srv-pills"><span class="srv-pill">SLED</span><span class="srv-pill">Federal</span><span class="srv-pill">Compliance</span></div>
+    </div>
+
+    <div class="srv rv" style="transition-delay:.48s">
+      <div class="srv-corner"></div>
+      <div class="srv-num">06</div>
+      <div class="srv-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      </div>
+      <div class="srv-title">International Operations</div>
+      <p class="srv-desc">Global expansion support, cross-border logistics, and international compliance — enabling organizations to operate with confidence anywhere in the world.</p>
+      <div class="srv-pills"><span class="srv-pill">Global</span><span class="srv-pill">Cross-Border</span><span class="srv-pill">Compliance</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- WHO WE SERVE -->
+<section class="sec serve" id="serve">
+  <div class="sec-tag rv"><div class="sec-tag-line"></div><span>Who We Serve</span></div>
+  <h2 class="sec-h rv" style="transition-delay:.1s;max-width:580px">Built for those who<br><em>can't afford to fail.</em></h2>
+  <div class="serve-grid">
+
+    <div class="serve-card rv" style="transition-delay:.12s">
+      <div class="serve-ico">🏛</div>
+      <div>
+        <div class="serve-name">SLED</div>
+        <p class="serve-desc">State, local, and education sectors with specialized knowledge of public procurement, compliance, and sector-specific operational requirements. We know the landscape inside out.</p>
+      </div>
+    </div>
+
+    <div class="serve-card rv" style="transition-delay:.22s">
+      <div class="serve-ico">🏢</div>
+      <div>
+        <div class="serve-name">Public Sector</div>
+        <p class="serve-desc">Government agencies and public organizations benefit from our deep understanding of federal regulations, reporting requirements, and government operations infrastructure.</p>
+      </div>
+    </div>
+
+    <div class="serve-card rv" style="transition-delay:.32s">
+      <div class="serve-ico">📈</div>
+      <div>
+        <div class="serve-name">Commercial SMB</div>
+        <p class="serve-desc">Small and mid-sized businesses seeking scalable solutions to grow efficiently while managing complex logistics and operational challenges with limited overhead.</p>
+      </div>
+    </div>
+
+    <div class="serve-card rv" style="transition-delay:.42s">
+      <div class="serve-ico">🌐</div>
+      <div>
+        <div class="serve-name">International Clients</div>
+        <p class="serve-desc">Organizations expanding globally require expertise in international logistics, supply chains, and cross-border operational frameworks. We've navigated it all.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="sec why" id="why">
+  <div class="why-inner">
+    <div>
+      <div class="sec-tag rv"><div class="sec-tag-line"></div><span>Why H&amp;K</span></div>
+      <h2 class="sec-h rv" style="transition-delay:.1s">What makes<br><em>us different.</em></h2>
+      <div class="pill-list">
+        <div class="pill-row rv" style="transition-delay:.14s">
+          <span class="pill-i">i</span>
+          <div>
+            <div class="pill-lbl">Agile &amp; Scalable Delivery</div>
+            <p class="pill-sub">We scale with your needs — from targeted single engagements to full operational transformation programs spanning multiple years.</p>
+          </div>
+        </div>
+        <div class="pill-row rv" style="transition-delay:.22s">
+          <span class="pill-i">ii</span>
+          <div>
+            <div class="pill-lbl">Cross-Sector Experience</div>
+            <p class="pill-sub">Public, commercial, international — we bring multi-sector perspective to every challenge that most firms simply can't match.</p>
+          </div>
+        </div>
+        <div class="pill-row rv" style="transition-delay:.30s">
+          <span class="pill-i">iii</span>
+          <div>
+            <div class="pill-lbl">We Execute, Not Just Advise</div>
+            <p class="pill-sub">Consistent delivery is our standard — not our pitch. We stay accountable to outcomes and don't disappear after the report is filed.</p>
+          </div>
+        </div>
+        <div class="pill-row rv" style="transition-delay:.38s">
+          <span class="pill-i">iv</span>
+          <div>
+            <div class="pill-lbl">Mission-Critical Ready</div>
+            <p class="pill-sub">Built to support high-stakes, time-sensitive operations where failure is never an option and speed is everything.</p>
+          </div>
+        </div>
+        <div class="pill-row rv" style="transition-delay:.46s">
+          <span class="pill-i">v</span>
+          <div>
+            <div class="pill-lbl">Results-Driven Approach</div>
+            <p class="pill-sub">Your success metrics are our success metrics. Every engagement is designed around outcomes that move the needle for your organization.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="why-vis rv" style="transition-delay:.3s">
+      <div class="why-ring"></div>
+      <div class="why-ring"></div>
+      <div class="why-ring"></div>
+      <div class="why-center">
+        <div class="why-c-big">H&amp;K</div>
+        <div class="why-c-sub">U.S. &amp; Global</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEADERSHIP -->
+<section class="sec leadership" id="leadership">
+  <div class="lead-bg"></div>
+  <div style="position:relative;z-index:1">
+    <div class="sec-tag rv"><div class="sec-tag-line"></div><span>Leadership</span></div>
+    <h2 class="sec-h rv" style="transition-delay:.1s">Visionary leaders<br><em>driving results.</em></h2>
+
+    <div class="exec-grid">
+
+      <!-- Heather Manspeaker -->
+      <div class="exec-card rv" style="transition-delay:.12s">
+        <div class="exec-head">
+          <div class="exec-name">Heather Manspeaker</div>
+          <div class="exec-title">CEO / CRO</div>
+          <div class="exec-subtitle">Strategic visionary with three decades of enterprise leadership</div>
+        </div>
+        <div class="exec-body">
+          <p class="exec-bio">Heather brings a distinctive blend of strategic foresight and operational excellence to H&K's helm. A seasoned channel architect and revenue strategist, she has spent 30+ years building high-performing ecosystems across cybersecurity, cloud, and enterprise technology sectors — scaling revenues at industry leaders like Sophos, Coro, and CodeHunter while consistently ranking among top performers. Her mastery lies in translating complex market dynamics into executable strategies that drive sustainable growth.</p>
+          <div class="exec-highlights">
+            <div class="exec-hi-label">Core Competencies</div>
+            <div class="exec-point">Strategic channel architecture &amp; partner ecosystem development</div>
+            <div class="exec-point">Enterprise revenue growth &amp; multi-million-dollar quota management</div>
+            <div class="exec-point">Cross-functional team leadership &amp; organizational transformation</div>
+            <div class="exec-point">AI/Cyber/SaaS solution integration &amp; market expansion</div>
+            <div class="exec-point">Competitive intelligence &amp; go-to-market strategy</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Justin Carano -->
+      <div class="exec-card rv" style="transition-delay:.20s">
+        <div class="exec-head">
+          <div class="exec-name">Justin Carano</div>
+          <div class="exec-title">Head of AI Product</div>
+          <div class="exec-subtitle">Futurist, technologist, &amp; innovator reshaping possibilities</div>
+        </div>
+        <div class="exec-body">
+          <p class="exec-bio">Justin is H&K's innovation catalyst — a technical polymath and serial entrepreneur who sees around corners. As founder of multiple ventures and current architect of cutting-edge AI solutions, he combines deep technical proficiency with entrepreneurial instinct and visionary thinking. His superpower: translating emerging technologies into products that solve real problems. From patent development to full-stack deployment, Justin embodies the future-forward mindset that keeps H&K at the frontier of digital transformation.</p>
+          <div class="exec-highlights">
+            <div class="exec-hi-label">Core Competencies</div>
+            <div class="exec-point">AI product development &amp; technology innovation</div>
+            <div class="exec-point">Entrepreneurial product strategy &amp; market validation</div>
+            <div class="exec-point">Full-stack technical architecture &amp; system design</div>
+            <div class="exec-point">Digital transformation &amp; process optimization</div>
+            <div class="exec-point">Patent development &amp; proprietary technology creation</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="sec cta" id="contact">
+  <div class="cta-bg"></div>
+  <div class="cta-bar"></div>
+  <div class="cta-inner">
+    <div class="sec-tag cta-sec-tag rv">
+      <div class="sec-tag-line"></div>
+      <span>Get In Touch</span>
+      <div class="sec-tag-line"></div>
+    </div>
+    <h2 class="cta-h rv" style="transition-delay:.1s">
+      LET'S BUILD<br><em>something great.</em>
+    </h2>
+    <p class="cta-sub rv" style="transition-delay:.2s">
+      Whether you're scaling, optimizing, or expanding globally — H&K brings the expertise and execution to make it happen.
+    </p>
+    <div class="cta-row rv" style="transition-delay:.3s">
+      <a href="mailto:Heather.Manspeaker@hk-enterprisesllc.com" class="btn-primary"><span>Send Us a Message</span></a>
+      <a href="tel:4083144813" class="btn-line">
+        <span class="btn-line-arrow">→</span>
+        408 314 4813
+      </a>
+    </div>
+    <div class="cta-contact rv" style="transition-delay:.42s">
+      <div class="cti">
+        <div class="cti-l">Email</div>
+        <div class="cti-v">Heather.Manspeaker@hk-enterprisesllc.com</div>
+      </div>
+      <div class="cti">
+        <div class="cti-l">Phone</div>
+        <div class="cti-v">408 314 4813</div>
+      </div>
+      <div class="cti">
+        <div class="cti-l">Website</div>
+        <div class="cti-v">www.hk-enterprisesllc.com</div>
+      </div>
+      <div class="cti">
+        <div class="cti-l">Serving</div>
+        <div class="cti-v">U.S. &amp; International</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="foot-logo">H<span>&</span>K Enterprises&nbsp;L.L.C.</div>
+    <div class="foot-tag">Consulting &amp; Logistics Solutions</div>
+  </div>
+  <div class="foot-r">© 2025 H&amp;K Enterprises L.L.C. — Serving U.S. &amp; International Clients</div>
+</footer>
+
+<script>
+// Cursor
+const cr=document.getElementById('cr'),cr2=document.getElementById('cr2');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cr.style.left=mx+'px';cr.style.top=my+'px'});
+(function raf(){rx+=(mx-rx)*.13;ry+=(my-ry)*.13;cr2.style.left=rx+'px';cr2.style.top=ry+'px';requestAnimationFrame(raf)})();
+
+// Sticky nav
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('s',scrollY>60));
+
+// Scroll reveal
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
